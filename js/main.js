@@ -18,3 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
         navLinks.classList.remove('open');
       });
     });
+
+  /* TROCA DE TEMA */
+  var themeBtns = document.querySelectorAll('.theme-btn');
