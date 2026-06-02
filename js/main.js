@@ -5,3 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var navLinks  = document.getElementById('navLinks');
 })
 
+  if (hamburger && navLinks) {
+    hamburger.addEventListener('click', function () {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+  }
