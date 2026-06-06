@@ -119,3 +119,39 @@ document.addEventListener('DOMContentLoaded', function () {
       el.addEventListener('change', function () { clearError(el); });
     });
   }
+  contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var valid   = true;
+      var nameEl  = document.getElementById('formName');
+      var emailEl = document.getElementById('formEmail');
+      var empEl   = document.getElementById('formEmpresa');
+      var setorEl = document.getElementById('formSetor');
+      var msgEl   = document.getElementById('formMsg');
+
+      if (!nameEl.value.trim()) {
+        showError(nameEl, 'Informe seu nome.'); valid = false;
+      } else if (nameEl.value.trim().length < 3) {
+        showError(nameEl, 'Nome deve ter ao menos 3 caracteres.'); valid = false;
+      }
+
+      if (!emailEl.value.trim()) {
+        showError(emailEl, 'Informe seu e-mail.'); valid = false;
+      } else if (!validateEmail(emailEl.value.trim())) {
+        showError(emailEl, 'E-mail inválido.'); valid = false;
+      }
+
+      if (!empEl.value.trim()) {
+        showError(empEl, 'Informe a empresa ou instituição.'); valid = false;
+      }
+
+      if (!setorEl.value) {
+        showError(setorEl, 'Selecione o setor.'); valid = false;
+      }
+
+      if (!msgEl.value.trim()) {
+        showError(msgEl, 'Escreva sua mensagem.'); valid = false;
+      } else if (msgEl.value.trim().length < 20) {
+        showError(msgEl, 'Mensagem muito curta (mínimo 20 caracteres).'); valid = false;
+      }
+    });
