@@ -155,3 +155,16 @@ document.addEventListener('DOMContentLoaded', function () {
         showError(msgEl, 'Mensagem muito curta (mínimo 20 caracteres).'); valid = false;
       }
     });
+  if (valid) {
+        contactForm.style.display = 'none';
+        var successEl = document.getElementById('formSuccess');
+        if (successEl) successEl.classList.add('visible');
+        contactForm.reset();
+      }
+  if (valid) {
+        contactForm.style.display = 'none';
+        var successEl = document.getElementById('formSuccess');
+        if (successEl) successEl.classList.add('visible');
+        contactForm.reset();
+      }    
+  
