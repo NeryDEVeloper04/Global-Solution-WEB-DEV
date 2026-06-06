@@ -1,198 +1,229 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", () => {
 
   /* MENU HAMBURGER */
-  var hamburger = document.getElementById('hamburger');
-  var navLinks  = document.getElementById('navLinks');
-})
+  const hamburger = document.getElementById("hamburger");
+  const navLinks = document.getElementById("navLinks");
 
-    if (hamburger && navLinks) {
-    hamburger.addEventListener('click', function () {
-      hamburger.classList.toggle('open');
-      navLinks.classList.toggle('open');
+  if (hamburger && navLinks) {
+    hamburger.addEventListener("click", () => {
+      hamburger.classList.toggle("open");
+      navLinks.classList.toggle("open");
     });
-  }
 
-    navLinks.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        hamburger.classList.remove('open');
-        navLinks.classList.remove('open');
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        hamburger.classList.remove("open");
+        navLinks.classList.remove("open");
       });
     });
+  }
 
   /* TROCA DE TEMA */
-  var themeBtns = document.querySelectorAll('.theme-btn');
+  const themeBtns = document.querySelectorAll(".theme-btn");
 
-    themeBtns.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var theme = btn.getAttribute('data-theme');
-      document.body.classList.remove('tema-branco', 'tema-preto');
-      if (theme === 'branco') document.body.classList.add('tema-branco');
-      if (theme === 'preto')  document.body.classList.add('tema-preto');
-      themeBtns.forEach(function (b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-    });
-  });
+  themeBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const theme = btn.dataset.theme;
 
-  /*  SLIDESHOW  */
-  var slides       = document.querySelectorAll('.slide');
-  var dots         = document.querySelectorAll('.slide-dot');
-  var currentSlide = 0;
-  var autoSlideTimer;
+      document.body.classList.remove("tema-branco", "tema-preto");
 
-  function goToSlide(n) {
-    slides[currentSlide].classList.remove('active');
-    dots[currentSlide].classList.remove('active');
-    currentSlide = (n + slides.length) % slides.length;
-    slides[currentSlide].classList.add('active');
-    dots[currentSlide].classList.add('active');
-  }
-   function startAuto() {
-    autoSlideTimer = setInterval(function () { goToSlide(currentSlide + 1); }, 4500);
-  }
-
-  function stopAuto() {
-    clearInterval(autoSlideTimer);
-  }
-
-  var btnNext = document.getElementById('slideNext');
-  var btnPrev = document.getElementById('slidePrev');
-
-  if (btnNext) {
-    btnNext.addEventListener('click', function () {
-      stopAuto(); goToSlide(currentSlide + 1); startAuto();
-    });
-  }
-
-  if (btnPrev) {
-    btnPrev.addEventListener('click', function () {
-      stopAuto(); goToSlide(currentSlide - 1); startAuto();
-    });
-  }
-  dots.forEach(function (dot, i) {
-    dot.addEventListener('click', function () {
-      stopAuto(); goToSlide(i); startAuto();
-    });
-  });
-   var slideshowWrap = document.querySelector('.slideshow-wrap');
-  var touchStartX = 0;
-
-  if (slideshowWrap) {
-    slideshowWrap.addEventListener('touchstart', function (e) {
-      touchStartX = e.touches[0].clientX;
-    }, { passive: true });
-
-    slideshowWrap.addEventListener('touchend', function (e) {
-      var diff = touchStartX - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 50) {
-        stopAuto();
-        if (diff > 0) goToSlide(currentSlide + 1);
-        else          goToSlide(currentSlide - 1);
-        startAuto();
+      if (theme === "branco") {
+        document.body.classList.add("tema-branco");
       }
+
+      if (theme === "preto") {
+        document.body.classList.add("tema-preto");
+      }
+
+      themeBtns.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    });
+  });
+
+  /* SLIDESHOW */
+  const slides = document.querySelectorAll(".slide");
+  const dots = document.querySelectorAll(".slide-dot");
+
+  let currentSlide = 0;
+  let autoSlide;
+
+  function goToSlide(index) {
+    slides.forEach(slide => slide.classList.remove("active"));
+    dots.forEach(dot => dot.classList.remove("active"));
+
+    currentSlide = (index + slides.length) % slides.length;
+
+    slides[currentSlide].classList.add("active");
+
+    if (dots[currentSlide]) {
+      dots[currentSlide].classList.add("active");
+    }
+  }
+
+  function startAutoSlide() {
+    autoSlide = setInterval(() => {
+      goToSlide(currentSlide + 1);
+    }, 4500);
+  }
+
+  function stopAutoSlide() {
+    clearInterval(autoSlide);
+  }
+
+  const nextBtn = document.getElementById("slideNext");
+  const prevBtn = document.getElementById("slidePrev");
+
+  if (nextBtn) {
+    nextBtn.addEventListener("click", () => {
+      stopAutoSlide();
+      goToSlide(currentSlide + 1);
+      startAutoSlide();
     });
   }
 
-  if (slides.length > 0) startAuto();
+  if (prevBtn) {
+    prevBtn.addEventListener("click", () => {
+      stopAutoSlide();
+      goToSlide(currentSlide - 1);
+      startAutoSlide();
+    });
+  }
 
-  /* FORMULÁRIO COM VALIDAÇÃO*/
-  var contactForm = document.getElementById('contactForm');
+  dots.forEach((dot, index) => {
+    dot.addEventListener("click", () => {
+      stopAutoSlide();
+      goToSlide(index);
+      startAutoSlide();
+    });
+  });
+
+  if (slides.length > 0) {
+    startAutoSlide();
+  }
+
+  /* FORMULÁRIO */
+
+  const contactForm = document.getElementById("contactForm");
 
   if (contactForm) {
-    function showError(inputEl, msg) {
-      inputEl.classList.add('error');
-      var errEl = inputEl.closest('.form-group').querySelector('.form-error');
-      if (errEl) { errEl.textContent = msg; errEl.classList.add('visible'); }
+
+    function showError(input, message) {
+      input.classList.add("error");
+
+      const error = input.parentElement.querySelector(".form-error");
+
+      if (error) {
+        error.textContent = message;
+        error.classList.add("visible");
+      }
     }
 
-    function clearError(inputEl) {
-      inputEl.classList.remove('error');
-      var errEl = inputEl.closest('.form-group').querySelector('.form-error');
-      if (errEl) errEl.classList.remove('visible');
+    function clearError(input) {
+      input.classList.remove("error");
+
+      const error = input.parentElement.querySelector(".form-error");
+
+      if (error) {
+        error.textContent = "";
+        error.classList.remove("visible");
+      }
     }
 
     function validateEmail(email) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
     }
 
-    contactForm.querySelectorAll('input, textarea, select').forEach(function (el) {
-      el.addEventListener('input',  function () { clearError(el); });
-      el.addEventListener('change', function () { clearError(el); });
+    contactForm.querySelectorAll("input, textarea, select").forEach(el => {
+      el.addEventListener("input", () => clearError(el));
+      el.addEventListener("change", () => clearError(el));
     });
-  }
-  contactForm.addEventListener('submit', function (e) {
+
+    contactForm.addEventListener("submit", e => {
+
       e.preventDefault();
 
-      var valid   = true;
-      var nameEl  = document.getElementById('formName');
-      var emailEl = document.getElementById('formEmail');
-      var empEl   = document.getElementById('formEmpresa');
-      var setorEl = document.getElementById('formSetor');
-      var msgEl   = document.getElementById('formMsg');
+      let valid = true;
 
-      if (!nameEl.value.trim()) {
-        showError(nameEl, 'Informe seu nome.'); valid = false;
-      } else if (nameEl.value.trim().length < 3) {
-        showError(nameEl, 'Nome deve ter ao menos 3 caracteres.'); valid = false;
+      const name = document.getElementById("formName");
+      const email = document.getElementById("formEmail");
+      const empresa = document.getElementById("formEmpresa");
+      const setor = document.getElementById("formSetor");
+      const mensagem = document.getElementById("formMsg");
+
+      if (name.value.trim().length < 3) {
+        showError(name, "Nome deve ter ao menos 3 caracteres.");
+        valid = false;
       }
 
-      if (!emailEl.value.trim()) {
-        showError(emailEl, 'Informe seu e-mail.'); valid = false;
-      } else if (!validateEmail(emailEl.value.trim())) {
-        showError(emailEl, 'E-mail inválido.'); valid = false;
+      if (!validateEmail(email.value.trim())) {
+        showError(email, "E-mail inválido.");
+        valid = false;
       }
 
-      if (!empEl.value.trim()) {
-        showError(empEl, 'Informe a empresa ou instituição.'); valid = false;
+      if (empresa.value.trim() === "") {
+        showError(empresa, "Informe a empresa.");
+        valid = false;
       }
 
-      if (!setorEl.value) {
-        showError(setorEl, 'Selecione o setor.'); valid = false;
+      if (setor.value === "") {
+        showError(setor, "Selecione um setor.");
+        valid = false;
       }
 
-      if (!msgEl.value.trim()) {
-        showError(msgEl, 'Escreva sua mensagem.'); valid = false;
-      } else if (msgEl.value.trim().length < 20) {
-        showError(msgEl, 'Mensagem muito curta (mínimo 20 caracteres).'); valid = false;
+      if (mensagem.value.trim().length < 20) {
+        showError(mensagem, "Mensagem deve ter ao menos 20 caracteres.");
+        valid = false;
+      }
+
+      if (valid) {
+        const success = document.getElementById("formSuccess");
+
+        contactForm.reset();
+        contactForm.style.display = "none";
+
+        if (success) {
+          success.classList.add("visible");
+        }
       }
     });
-  if (valid) {
-        contactForm.style.display = 'none';
-        var successEl = document.getElementById('formSuccess');
-        if (successEl) successEl.classList.add('visible');
-        contactForm.reset();
-      }
-  if (valid) {
-        contactForm.style.display = 'none';
-        var successEl = document.getElementById('formSuccess');
-        if (successEl) successEl.classList.add('visible');
-        contactForm.reset();
-      }    
+  }
 
- /*  QUIZ */
-  var quizData = [ /* array com as 10 perguntas — copie do main.js final */ ];
+  /* QUIZ SIMPLES */
 
-  var quizCurrent  = 0;
-  var quizScore    = 0;
-  var quizAnswered = false;
+  const btnStartQuiz = document.getElementById("btnStartQuiz");
 
-  var quizStartEl   = document.getElementById('quizStart');
-  var quizBodyEl    = document.getElementById('quizBody');
-  var quizResultEl  = document.getElementById('quizResult');
-  var quizCounterEl = document.getElementById('quizCounter');
-  var quizQEl       = document.getElementById('quizQuestion');
-  var quizOptsEl    = document.getElementById('quizOptions');
-  var quizFbEl      = document.getElementById('quizFeedback');
-  var quizNextBtn   = document.getElementById('quizNext');
-  var quizFillEl    = document.getElementById('quizProgressFill');
-  var btnStartQuiz  = document.getElementById('btnStartQuiz');
-  var btnRestartQ   = document.getElementById('btnRestartQuiz');
+  if (btnStartQuiz) {
 
-  if (!btnStartQuiz) return;
+    btnStartQuiz.addEventListener("click", () => {
 
-  function renderQuestion() { /* ... */ }
-  function selectAnswer(index, btn) { /* ... */ }
-  function showResult() { /* ... */ }
-  
-  btnStartQuiz.addEventListener('click', function () { /* ... */ });
-  quizNextBtn.addEventListener('click', function () { /* ... */ });
-  btnRestartQ.addEventListener('click', function () { /* ... */ });
+      document.getElementById("quizStart").style.display = "none";
+      document.getElementById("quizBody").style.display = "block";
+
+      document.getElementById("quizQuestion").innerText =
+        "Qual tecnologia é utilizada pelo InfraWatch para monitoramento em campo?";
+
+      document.getElementById("quizOptions").innerHTML = `
+        <button class="quiz-option">Arduino e Sensores IoT</button>
+        <button class="quiz-option">Impressora 3D</button>
+        <button class="quiz-option">Drone Agrícola</button>
+        <button class="quiz-option">Bluetooth Speaker</button>
+      `;
+
+      document.querySelectorAll(".quiz-option").forEach(btn => {
+
+        btn.addEventListener("click", () => {
+
+          document.getElementById("quizFeedback").innerHTML =
+            btn.innerText === "Arduino e Sensores IoT"
+              ? "✅ Resposta correta!"
+              : "❌ Resposta incorreta.";
+
+        });
+
+      });
+
+    });
+
+  }
+
+});
