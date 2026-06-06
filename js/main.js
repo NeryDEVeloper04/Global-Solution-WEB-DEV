@@ -94,3 +94,77 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (slides.length > 0) startAuto();
 
+  /* FORMULÁRIO COM VALIDAÇÃO*/
+  var contactForm = document.getElementById('contactForm');
+
+  if (contactForm) {
+    function showError(inputEl, msg) {
+      inputEl.classList.add('error');
+      var errEl = inputEl.closest('.form-group').querySelector('.form-error');
+      if (errEl) { errEl.textContent = msg; errEl.classList.add('visible'); }
+    }
+
+    function clearError(inputEl) {
+      inputEl.classList.remove('error');
+      var errEl = inputEl.closest('.form-group').querySelector('.form-error');
+      if (errEl) errEl.classList.remove('visible');
+    }
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    contactForm.querySelectorAll('input, textarea, select').forEach(function (el) {
+      el.addEventListener('input',  function () { clearError(el); });
+      el.addEventListener('change', function () { clearError(el); });
+    });
+  }
+  contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var valid   = true;
+      var nameEl  = document.getElementById('formName');
+      var emailEl = document.getElementById('formEmail');
+      var empEl   = document.getElementById('formEmpresa');
+      var setorEl = document.getElementById('formSetor');
+      var msgEl   = document.getElementById('formMsg');
+
+      if (!nameEl.value.trim()) {
+        showError(nameEl, 'Informe seu nome.'); valid = false;
+      } else if (nameEl.value.trim().length < 3) {
+        showError(nameEl, 'Nome deve ter ao menos 3 caracteres.'); valid = false;
+      }
+
+      if (!emailEl.value.trim()) {
+        showError(emailEl, 'Informe seu e-mail.'); valid = false;
+      } else if (!validateEmail(emailEl.value.trim())) {
+        showError(emailEl, 'E-mail inválido.'); valid = false;
+      }
+
+      if (!empEl.value.trim()) {
+        showError(empEl, 'Informe a empresa ou instituição.'); valid = false;
+      }
+
+      if (!setorEl.value) {
+        showError(setorEl, 'Selecione o setor.'); valid = false;
+      }
+
+      if (!msgEl.value.trim()) {
+        showError(msgEl, 'Escreva sua mensagem.'); valid = false;
+      } else if (msgEl.value.trim().length < 20) {
+        showError(msgEl, 'Mensagem muito curta (mínimo 20 caracteres).'); valid = false;
+      }
+    });
+  if (valid) {
+        contactForm.style.display = 'none';
+        var successEl = document.getElementById('formSuccess');
+        if (successEl) successEl.classList.add('visible');
+        contactForm.reset();
+      }
+  if (valid) {
+        contactForm.style.display = 'none';
+        var successEl = document.getElementById('formSuccess');
+        if (successEl) successEl.classList.add('visible');
+        contactForm.reset();
+      }    
+  
