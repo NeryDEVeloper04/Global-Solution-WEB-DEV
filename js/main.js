@@ -188,4 +188,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var btnRestartQ   = document.getElementById('btnRestartQuiz');
 
   if (!btnStartQuiz) return;
-  
+
+  function renderQuestion() { /* ... */ }
+  function selectAnswer(index, btn) { /* ... */ }
+  function showResult() { /* ... */ }
