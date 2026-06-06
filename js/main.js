@@ -94,3 +94,28 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (slides.length > 0) startAuto();
 
+  /* FORMULÁRIO COM VALIDAÇÃO*/
+  var contactForm = document.getElementById('contactForm');
+
+  if (contactForm) {
+    function showError(inputEl, msg) {
+      inputEl.classList.add('error');
+      var errEl = inputEl.closest('.form-group').querySelector('.form-error');
+      if (errEl) { errEl.textContent = msg; errEl.classList.add('visible'); }
+    }
+
+    function clearError(inputEl) {
+      inputEl.classList.remove('error');
+      var errEl = inputEl.closest('.form-group').querySelector('.form-error');
+      if (errEl) errEl.classList.remove('visible');
+    }
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    contactForm.querySelectorAll('input, textarea, select').forEach(function (el) {
+      el.addEventListener('input',  function () { clearError(el); });
+      el.addEventListener('change', function () { clearError(el); });
+    });
+  }
