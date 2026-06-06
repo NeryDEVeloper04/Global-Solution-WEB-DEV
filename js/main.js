@@ -167,4 +167,32 @@ document.addEventListener('DOMContentLoaded', function () {
         if (successEl) successEl.classList.add('visible');
         contactForm.reset();
       }    
+
+ /*  QUIZ */
+  var quizData = [ /* array com as 10 perguntas — copie do main.js final */ ];
+
+  var quizCurrent  = 0;
+  var quizScore    = 0;
+  var quizAnswered = false;
+
+  var quizStartEl   = document.getElementById('quizStart');
+  var quizBodyEl    = document.getElementById('quizBody');
+  var quizResultEl  = document.getElementById('quizResult');
+  var quizCounterEl = document.getElementById('quizCounter');
+  var quizQEl       = document.getElementById('quizQuestion');
+  var quizOptsEl    = document.getElementById('quizOptions');
+  var quizFbEl      = document.getElementById('quizFeedback');
+  var quizNextBtn   = document.getElementById('quizNext');
+  var quizFillEl    = document.getElementById('quizProgressFill');
+  var btnStartQuiz  = document.getElementById('btnStartQuiz');
+  var btnRestartQ   = document.getElementById('btnRestartQuiz');
+
+  if (!btnStartQuiz) return;
+
+  function renderQuestion() { /* ... */ }
+  function selectAnswer(index, btn) { /* ... */ }
+  function showResult() { /* ... */ }
   
+  btnStartQuiz.addEventListener('click', function () { /* ... */ });
+  quizNextBtn.addEventListener('click', function () { /* ... */ });
+  btnRestartQ.addEventListener('click', function () { /* ... */ });
