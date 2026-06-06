@@ -68,3 +68,8 @@ document.addEventListener('DOMContentLoaded', function () {
       stopAuto(); goToSlide(currentSlide - 1); startAuto();
     });
   }
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () {
+      stopAuto(); goToSlide(i); startAuto();
+    });
+  });
