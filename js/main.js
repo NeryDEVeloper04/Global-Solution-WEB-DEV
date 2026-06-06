@@ -46,3 +46,25 @@ document.addEventListener('DOMContentLoaded', function () {
     slides[currentSlide].classList.add('active');
     dots[currentSlide].classList.add('active');
   }
+   function startAuto() {
+    autoSlideTimer = setInterval(function () { goToSlide(currentSlide + 1); }, 4500);
+  }
+
+  function stopAuto() {
+    clearInterval(autoSlideTimer);
+  }
+
+  var btnNext = document.getElementById('slideNext');
+  var btnPrev = document.getElementById('slidePrev');
+
+  if (btnNext) {
+    btnNext.addEventListener('click', function () {
+      stopAuto(); goToSlide(currentSlide + 1); startAuto();
+    });
+  }
+
+  if (btnPrev) {
+    btnPrev.addEventListener('click', function () {
+      stopAuto(); goToSlide(currentSlide - 1); startAuto();
+    });
+  }
