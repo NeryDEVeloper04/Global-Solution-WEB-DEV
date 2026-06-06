@@ -192,3 +192,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function renderQuestion() { /* ... */ }
   function selectAnswer(index, btn) { /* ... */ }
   function showResult() { /* ... */ }
+  
+  btnStartQuiz.addEventListener('click', function () { /* ... */ });
+  quizNextBtn.addEventListener('click', function () { /* ... */ });
+  btnRestartQ.addEventListener('click', function () { /* ... */ });
