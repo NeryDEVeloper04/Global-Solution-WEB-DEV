@@ -6,8 +6,8 @@
 document.addEventListener('DOMContentLoaded', function () {
 
   /* ---- MENU HAMBURGER ---- */
-  var hamburger = document.getElementById('hamburger');
-  var navLinks  = document.getElementById('navLinks');
+  let hamburger = document.getElementById('hamburger');
+  let navLinks  = document.getElementById('navLinks');
 
   if (hamburger && navLinks) {
     hamburger.addEventListener('click', function () {
@@ -24,11 +24,11 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---- TROCA DE TEMA ---- */
-  var themeBtns = document.querySelectorAll('.theme-btn');
+  let themeBtns = document.querySelectorAll('.theme-btn');
 
   themeBtns.forEach(function (btn) {
     btn.addEventListener('click', function () {
-      var theme = btn.getAttribute('data-theme');
+      let theme = btn.getAttribute('data-theme');
       document.body.classList.remove('tema-branco', 'tema-preto');
       if (theme === 'branco') document.body.classList.add('tema-branco');
       if (theme === 'preto')  document.body.classList.add('tema-preto');
@@ -38,10 +38,10 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   /* ---- SLIDESHOW ---- */
-  var slides       = document.querySelectorAll('.slide');
-  var dots         = document.querySelectorAll('.slide-dot');
-  var currentSlide = 0;
-  var autoSlideTimer;
+  let slides       = document.querySelectorAll('.slide');
+  let dots         = document.querySelectorAll('.slide-dot');
+  let currentSlide = 0;
+  let autoSlideTimer;
 
   function goToSlide(n) {
     slides[currentSlide].classList.remove('active');
@@ -59,8 +59,8 @@ document.addEventListener('DOMContentLoaded', function () {
     clearInterval(autoSlideTimer);
   }
 
-  var btnNext = document.getElementById('slideNext');
-  var btnPrev = document.getElementById('slidePrev');
+  let btnNext = document.getElementById('slideNext');
+  let btnPrev = document.getElementById('slidePrev');
 
   if (btnNext) {
     btnNext.addEventListener('click', function () {
@@ -80,8 +80,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  var slideshowWrap = document.querySelector('.slideshow-wrap');
-  var touchStartX = 0;
+  let slideshowWrap = document.querySelector('.slideshow-wrap');
+  let touchStartX = 0;
 
   if (slideshowWrap) {
     slideshowWrap.addEventListener('touchstart', function (e) {
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, { passive: true });
 
     slideshowWrap.addEventListener('touchend', function (e) {
-      var diff = touchStartX - e.changedTouches[0].clientX;
+      let diff = touchStartX - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 50) {
         stopAuto();
         if (diff > 0) goToSlide(currentSlide + 1);
@@ -102,18 +102,18 @@ document.addEventListener('DOMContentLoaded', function () {
   if (slides.length > 0) startAuto();
 
   /* ---- FORMULÁRIO COM VALIDAÇÃO ---- */
-  var contactForm = document.getElementById('contactForm');
+  let contactForm = document.getElementById('contactForm');
 
   if (contactForm) {
     function showError(inputEl, msg) {
       inputEl.classList.add('error');
-      var errEl = inputEl.closest('.form-group').querySelector('.form-error');
+      let errEl = inputEl.closest('.form-group').querySelector('.form-error');
       if (errEl) { errEl.textContent = msg; errEl.classList.add('visible'); }
     }
 
     function clearError(inputEl) {
       inputEl.classList.remove('error');
-      var errEl = inputEl.closest('.form-group').querySelector('.form-error');
+      let errEl = inputEl.closest('.form-group').querySelector('.form-error');
       if (errEl) errEl.classList.remove('visible');
     }
 
@@ -129,12 +129,12 @@ document.addEventListener('DOMContentLoaded', function () {
     contactForm.addEventListener('submit', function (e) {
       e.preventDefault();
 
-      var valid   = true;
-      var nameEl  = document.getElementById('formName');
-      var emailEl = document.getElementById('formEmail');
-      var empEl   = document.getElementById('formEmpresa');
-      var setorEl = document.getElementById('formSetor');
-      var msgEl   = document.getElementById('formMsg');
+      let valid   = true;
+      let nameEl  = document.getElementById('formName');
+      let emailEl = document.getElementById('formEmail');
+      let empEl   = document.getElementById('formEmpresa');
+      let setorEl = document.getElementById('formSetor');
+      let msgEl   = document.getElementById('formMsg');
 
       if (!nameEl.value.trim()) {
         showError(nameEl, 'Informe seu nome.'); valid = false;
@@ -164,7 +164,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       if (valid) {
         contactForm.style.display = 'none';
-        var successEl = document.getElementById('formSuccess');
+        let successEl = document.getElementById('formSuccess');
         if (successEl) successEl.classList.add('visible');
         contactForm.reset();
       }
@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---- QUIZ ---- */
-  var quizData = [
+  let quizData = [
     {
       q: 'Qual é a porcentagem aproximada de água tratada perdida no Brasil antes de chegar à população?',
       opts: ['15%', '24%', '37%', '52%'],
@@ -250,26 +250,26 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   ];
 
-  var quizCurrent  = 0;
-  var quizScore    = 0;
-  var quizAnswered = false;
+  let quizCurrent  = 0;
+  let quizScore    = 0;
+  let quizAnswered = false;
 
-  var quizStartEl   = document.getElementById('quizStart');
-  var quizBodyEl    = document.getElementById('quizBody');
-  var quizResultEl  = document.getElementById('quizResult');
-  var quizCounterEl = document.getElementById('quizCounter');
-  var quizQEl       = document.getElementById('quizQuestion');
-  var quizOptsEl    = document.getElementById('quizOptions');
-  var quizFbEl      = document.getElementById('quizFeedback');
-  var quizNextBtn   = document.getElementById('quizNext');
-  var quizFillEl    = document.getElementById('quizProgressFill');
-  var btnStartQuiz  = document.getElementById('btnStartQuiz');
-  var btnRestartQ   = document.getElementById('btnRestartQuiz');
+  let quizStartEl   = document.getElementById('quizStart');
+  let quizBodyEl    = document.getElementById('quizBody');
+  let quizResultEl  = document.getElementById('quizResult');
+  let quizCounterEl = document.getElementById('quizCounter');
+  let quizQEl       = document.getElementById('quizQuestion');
+  let quizOptsEl    = document.getElementById('quizOptions');
+  let quizFbEl      = document.getElementById('quizFeedback');
+  let quizNextBtn   = document.getElementById('quizNext');
+  let quizFillEl    = document.getElementById('quizProgressFill');
+  let btnStartQuiz  = document.getElementById('btnStartQuiz');
+  let btnRestartQ   = document.getElementById('btnRestartQuiz');
 
   if (!btnStartQuiz) return; // quiz not on page
 
   function renderQuestion() {
-    var q = quizData[quizCurrent];
+    let q = quizData[quizCurrent];
     quizAnswered = false;
     quizCounterEl.textContent = 'Pergunta ' + (quizCurrent + 1) + ' de ' + quizData.length;
     quizQEl.textContent = q.q;
@@ -279,9 +279,9 @@ document.addEventListener('DOMContentLoaded', function () {
     quizFillEl.style.width = ((quizCurrent / quizData.length) * 100) + '%';
 
     quizOptsEl.innerHTML = '';
-    var letters = ['A', 'B', 'C', 'D'];
+    let letters = ['A', 'B', 'C', 'D'];
     q.opts.forEach(function (opt, i) {
-      var btn = document.createElement('button');
+      let btn = document.createElement('button');
       btn.className = 'quiz-option';
       btn.type = 'button';
       btn.innerHTML = '<span class="option-letter">' + letters[i] + '</span>' + opt;
@@ -294,8 +294,8 @@ document.addEventListener('DOMContentLoaded', function () {
     if (quizAnswered) return;
     quizAnswered = true;
 
-    var q = quizData[quizCurrent];
-    var allBtns = quizOptsEl.querySelectorAll('.quiz-option');
+    let q = quizData[quizCurrent];
+    let allBtns = quizOptsEl.querySelectorAll('.quiz-option');
 
     allBtns.forEach(function (b) { b.disabled = true; });
     allBtns[q.correct].classList.add('correct');
@@ -303,7 +303,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (index === q.correct) {
       quizScore++;
       quizFbEl.textContent = '✓ Correto! ' + q.exp;
-      quizFbEl.style.color = 'var(--color-accent-2)';
+      quizFbEl.style.color = 'let(--color-accent-2)';
     } else {
       btn.classList.add('wrong');
       quizFbEl.textContent = '✗ Incorreto. ' + q.exp;
@@ -318,10 +318,10 @@ document.addEventListener('DOMContentLoaded', function () {
     quizResultEl.classList.add('visible');
     quizFillEl.style.width = '100%';
 
-    var pct = Math.round((quizScore / quizData.length) * 100);
+    let pct = Math.round((quizScore / quizData.length) * 100);
     document.getElementById('quizScoreNum').textContent = quizScore + '/' + quizData.length;
 
-    var title, msg;
+    let title, msg;
     if (pct >= 90) {
       title = 'Excelente! 🚀';
       msg = 'Você domina o InfraWatch. Score: ' + pct + '% — praticamente um especialista.';
