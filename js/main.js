@@ -1,11 +1,8 @@
-/* ===========================================
-   InfraWatch — main.js
-   Web Development — FIAP Global Solution 2026
-=========================================== */
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---- MENU HAMBURGER ---- */
+  /*  MENU HAMBURGER  */
   let hamburger = document.getElementById('hamburger');
   let navLinks  = document.getElementById('navLinks');
 
@@ -23,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- TROCA DE TEMA ---- */
+  /*  TROCA DE TEMA  */
   let themeBtns = document.querySelectorAll('.theme-btn');
 
   themeBtns.forEach(function (btn) {
@@ -37,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ---- SLIDESHOW ---- */
+  /*  SLIDESHOW  */
   let slides       = document.querySelectorAll('.slide');
   let dots         = document.querySelectorAll('.slide-dot');
   let currentSlide = 0;
@@ -101,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (slides.length > 0) startAuto();
 
-  /* ---- FORMULÁRIO COM VALIDAÇÃO ---- */
+  /*  FORMULÁRIO COM VALIDAÇÃO  */
   let contactForm = document.getElementById('contactForm');
 
   if (contactForm) {
@@ -171,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- QUIZ ---- */
+  /*  QUIZ  */
   let quizData = [
     {
       q: 'Qual é a porcentagem aproximada de água tratada perdida no Brasil antes de chegar à população?',
