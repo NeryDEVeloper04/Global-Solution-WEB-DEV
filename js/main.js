@@ -299,7 +299,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (index === q.correct) {
       quizScore++;
       quizFbEl.textContent = '✓ Correto! ' + q.exp;
-      quizFbEl.style.color = 'var(--color-accent-2)';
+      quizFbEl.style.color = 'let(--color-accent-2)';
     } else {
       btn.classList.add('wrong');
       quizFbEl.textContent = '✗ Incorreto. ' + q.exp;
