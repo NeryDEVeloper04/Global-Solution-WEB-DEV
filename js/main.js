@@ -224,10 +224,10 @@ document.addEventListener('DOMContentLoaded', function () {
     {
       q: 'Qual é o intervalo de monitoramento dos sensores do LeakTrack?',
       opts: [
-      'Os sensores realizam uma varredura completa apenas uma vez por dia para verificar possíveis vazamentos.',
-      'Os sensores coletam e analisam dados automaticamente a cada 6 horas para identificar alterações na área monitorada.',
-      'Os sensores permanecem ativos 24 horas por dia, 7 dias por semana, transmitindo informações em tempo real.',
-      'O satélite coleta informações da área monitorada a cada 6 dias e, caso sejam identificadas anomalias ou possíveis vazamentos, os sensores terrestres são ativados para uma análise mais detalhada.'],
+        'Os sensores verificam a área uma vez por dia.',
+        'Os sensores coletam dados a cada 6 horas.',
+        'Os sensores monitoram a área continuamente, 24 horas por dia.',
+        'O satélite coleta informações a cada 6 dias e, caso detecte anomalias, os sensores são ativados.'],
       correct: 3,
       exp: "O satélite coleta informações da área monitorada a cada 6 dias e, caso sejam identificadas anomalias ou possíveis vazamentos, os sensores terrestres são ativados para uma análise mais detalhada."
     },
