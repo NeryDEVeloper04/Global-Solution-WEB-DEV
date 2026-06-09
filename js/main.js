@@ -171,9 +171,9 @@ document.addEventListener('DOMContentLoaded', function () {
   let quizData = [
     {
       q: 'Qual é a porcentagem aproximada de água tratada perdida no Brasil antes de chegar à população?',
-      opts: ['15%', '24%', '37%', '52%'],
+      opts: ['15%', '24%', '40%', '52%'],
       correct: 2,
-      exp: 'Segundo o Instituto Trata Brasil, cerca de 37% da água tratada é perdida — principalmente por vazamentos.'
+      exp: 'Segundo o Instituto Trata Brasil, cerca de 40% da água tratada é perdida — principalmente por vazamentos.'
     },
     {
       q: 'Qual microcontrolador é utilizado pelo LeakTrack para a coleta de dados dos sensores IoT?',
@@ -223,9 +223,13 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     {
       q: 'Qual é o intervalo de monitoramento dos sensores do LeakTrack?',
-      opts: ['Uma vez por dia', 'A cada 6 horas', '24/7 contínuo', 'Somente horário comercial'],
-      correct: 2,
-      exp: 'Os sensores coletam leituras de forma contínua, 24 horas por dia, 7 dias por semana.'
+      opts: [
+        'Os sensores verificam a área uma vez por dia.',
+        'Os sensores coletam dados a cada 6 horas.',
+        'Os sensores monitoram a área continuamente, 24 horas por dia.',
+        'O satélite coleta informações a cada 6 dias e, caso detecte anomalias, os sensores são ativados.'],
+      correct: 3,
+      exp: "O satélite coleta informações da área monitorada a cada 6 dias e, caso sejam identificadas anomalias ou possíveis vazamentos, os sensores terrestres são ativados para uma análise mais detalhada."
     },
     {
       q: 'Quais são os dois tipos de sensores físicos utilizados pelo LeakTrack?',
