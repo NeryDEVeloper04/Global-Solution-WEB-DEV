@@ -1,11 +1,8 @@
-/* ===========================================
-   InfraWatch — main.js
-   Web Development — FIAP Global Solution 2026
-=========================================== */
+
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---- MENU HAMBURGER ---- */
+  /*  MENU HAMBURGER  */
   var hamburger = document.getElementById('hamburger');
   var navLinks  = document.getElementById('navLinks');
 
@@ -23,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- TROCA DE TEMA ---- */
+  /*  TROCA DE TEMA  */
   var themeBtns = document.querySelectorAll('.theme-btn');
 
   themeBtns.forEach(function (btn) {
@@ -37,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ---- SLIDESHOW ---- */
+  /*  SLIDESHOW  */
   var slides       = document.querySelectorAll('.slide');
   var dots         = document.querySelectorAll('.slide-dot');
   var currentSlide = 0;
@@ -101,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   if (slides.length > 0) startAuto();
 
-  /* ---- FORMULÁRIO COM VALIDAÇÃO ---- */
+  /*  FORMULÁRIO COM VALIDAÇÃO  */
   var contactForm = document.getElementById('contactForm');
 
   if (contactForm) {
@@ -171,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  /* ---- QUIZ ---- */
+  /*  QUIZ  */
   var quizData = [
     {
       q: 'Qual é a porcentagem aproximada de água tratada perdida no Brasil antes de chegar à população?',
@@ -180,19 +177,19 @@ document.addEventListener('DOMContentLoaded', function () {
       exp: 'Segundo o Instituto Trata Brasil, cerca de 37% da água tratada é perdida — principalmente por vazamentos.'
     },
     {
-      q: 'Qual microcontrolador é utilizado pelo InfraWatch para a coleta de dados dos sensores IoT?',
+      q: 'Qual microcontrolador é utilizado pelo LeakTrack para a coleta de dados dos sensores IoT?',
       opts: ['Raspberry Pi', 'Arduino', 'ESP32', 'STM32'],
       correct: 1,
       exp: 'O Arduino é o microcontrolador IoT utilizado para integrar os sensores de campo.'
     },
     {
-      q: 'Qual tipo de sensor o InfraWatch utiliza para monitoramento estrutural?',
+      q: 'Qual tipo de sensor o LeakTrack utiliza para monitoramento estrutural?',
       opts: ['Sensor de temperatura', 'Sensor de pressão', 'Sensor de vibração', 'Sensor de luminosidade'],
       correct: 2,
       exp: 'O sensor de vibração monitora a integridade estrutural das infraestruturas.'
     },
     {
-      q: 'O que são "dados orbitais" no contexto do InfraWatch?',
+      q: 'O que são "dados orbitais" no contexto do LeakTrack?',
       opts: [
         'Dados coletados por drones',
         'Dados de satélites usados para sensoriamento remoto',
@@ -203,7 +200,7 @@ document.addEventListener('DOMContentLoaded', function () {
       exp: 'Dados orbitais vêm de satélites e complementam a análise dos sensores físicos em campo.'
     },
     {
-      q: 'Qual é o principal objetivo do InfraWatch?',
+      q: 'Qual é o principal objetivo do LeakTrack?',
       opts: [
         'Automatizar reparos de vazamentos remotamente',
         'Substituir funcionários de manutenção por robôs',
@@ -211,7 +208,7 @@ document.addEventListener('DOMContentLoaded', function () {
         'Medir a qualidade química da água'
       ],
       correct: 2,
-      exp: 'O InfraWatch busca detectar sinais de vazamento antes que causem danos visíveis.'
+      exp: 'O LeakTrack busca detectar sinais de vazamento antes que causem danos visíveis.'
     },
     {
       q: 'Qual ferramenta é utilizada para simulação de circuitos no projeto?',
@@ -226,13 +223,13 @@ document.addEventListener('DOMContentLoaded', function () {
       exp: 'A manutenção preventiva pode custar até 10x menos do que reparos emergenciais com danos secundários.'
     },
     {
-      q: 'Qual é o intervalo de monitoramento dos sensores do InfraWatch?',
+      q: 'Qual é o intervalo de monitoramento dos sensores do LeakTrack?',
       opts: ['Uma vez por dia', 'A cada 6 horas', '24/7 contínuo', 'Somente horário comercial'],
       correct: 2,
       exp: 'Os sensores coletam leituras de forma contínua, 24 horas por dia, 7 dias por semana.'
     },
     {
-      q: 'Quais são os dois tipos de sensores físicos utilizados pelo InfraWatch?',
+      q: 'Quais são os dois tipos de sensores físicos utilizados pelo LeakTrack?',
       opts: [
         'Temperatura e pH',
         'Umidade e vibração',
@@ -240,10 +237,10 @@ document.addEventListener('DOMContentLoaded', function () {
         'Luminosidade e temperatura'
       ],
       correct: 1,
-      exp: 'O InfraWatch utiliza sensores de umidade (anomalias hídricas) e vibração (monitoramento estrutural).'
+      exp: 'O LeakTrack utiliza sensores de umidade (anomalias hídricas) e vibração (monitoramento estrutural).'
     },
     {
-      q: 'Qual é a sigla que representa a Internet das Coisas, tecnologia central do InfraWatch?',
+      q: 'Qual é a sigla que representa a Internet das Coisas, tecnologia central do LeakTrack?',
       opts: ['IDA', 'TIC', 'IoT', 'I2C'],
       correct: 2,
       exp: 'IoT (Internet of Things) conecta os sensores físicos à plataforma de análise.'
@@ -324,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var title, msg;
     if (pct >= 90) {
       title = 'Excelente! 🚀';
-      msg = 'Você domina o InfraWatch. Score: ' + pct + '% — praticamente um especialista.';
+      msg = 'Você domina o LeakTrack. Score: ' + pct + '% — praticamente um especialista.';
     } else if (pct >= 70) {
       title = 'Muito bom! 💡';
       msg = 'Bom conhecimento. Score: ' + pct + '% — revise os pontos errados para fixar o conteúdo.';
